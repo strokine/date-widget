@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2d1b3d"/>
+    </linearGradient>
+    <radialGradient id="widgetGrad" cx="30%" cy="30%" r="80%">
+      <stop offset="0%" stop-color="#EADDFF"/>
+      <stop offset="100%" stop-color="#D0BCFF"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="6" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Home screen background -->
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+  
+  <!-- Wallpaper dots -->
+  <g opacity="0.15" fill="#ffffff">
+    <circle cx="60" cy="50" r="1.5"/>
+    <circle cx="340" cy="80" r="1"/>
+    <circle cx="380" cy="340" r="1.5"/>
+    <circle cx="40" cy="360" r="1"/>
+    <circle cx="200" cy="30" r="1"/>
+  </g>
+
+  <!-- Cloverleaf/squircle widget shape (like Pixel weather widget) 
+       Centered at (200, 200), with four rounded lobes -->
+  <g filter="url(#softShadow)">
+    <path d="M 200,60
+             C 260,60 270,90 270,130
+             C 310,130 340,140 340,200
+             C 340,260 310,270 270,270
+             C 270,310 260,340 200,340
+             C 140,340 130,310 130,270
+             C 90,270 60,260 60,200
+             C 60,140 90,130 130,130
+             C 130,90 140,60 200,60 Z"
+          fill="url(#widgetGrad)"/>
+    
+    <!-- Day of week label -->
+    <text x="200" y="135" font-family="'Google Sans', 'Roboto', sans-serif" font-size="15" font-weight="500" fill="#4F378B" letter-spacing="2" text-anchor="middle">SATURDAY</text>
+    
+    <!-- Large date number - hero -->
+    <text x="200" y="235" font-family="'Google Sans', 'Roboto', sans-serif" font-size="110" font-weight="400" fill="#21005D" letter-spacing="-4" text-anchor="middle">18</text>
+    
+    <!-- Month + Year -->
+    <text x="200" y="268" font-family="'Google Sans', 'Roboto', sans-serif" font-size="17" font-weight="500" fill="#4F378B" text-anchor="middle">April 2026</text>
+    
+    <!-- Today pill -->
+    <rect x="170" y="290" width="60" height="22" rx="11" ry="11" fill="#6750A4"/>
+    <text x="200" y="305" font-family="'Google Sans', 'Roboto', sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" text-anchor="middle">Today</text>
+  </g>
+
+  <!-- Annotation -->
+  <text x="200" y="380" font-family="'Roboto', sans-serif" font-size="11" fill="#aaa" text-anchor="middle" opacity="0.8">Cloverleaf widget shape • Material You</text>
+</svg>
