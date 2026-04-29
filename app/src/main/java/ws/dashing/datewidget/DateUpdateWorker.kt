@@ -1,4 +1,4 @@
-package com.eugene.datewidget
+package ws.dashing.datewidget
 
 import android.content.Context
 import androidx.glance.appwidget.updateAll

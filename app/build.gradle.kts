@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    namespace = "com.eugene.datewidget"
-    compileSdk = 34
+    namespace = "ws.dashing.datewidget"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.eugene.datewidget"
+        applicationId = "ws.dashing.datewidget"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
+        targetSdk = 35
+        versionCode = 2
         versionName = "1.0"
         vectorDrawables { useSupportLibrary = true }
     }

@@ -1,4 +1,4 @@
-package com.eugene.datewidget
+package ws.dashing.datewidget
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
