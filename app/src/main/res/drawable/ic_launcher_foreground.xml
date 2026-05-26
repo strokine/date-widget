@@ -4,8 +4,27 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <!-- Clover scaled from 400->108, center (54,54), padded inside safe zone -->
+
+    <!-- Cookie + "25" scaled to fit inside the 66dp circular safe zone (centered, scale 0.7) -->
     <path
-        android:pathData="M 54,28.8 C 64.8,28.8 66.6,34.2 66.6,41.4 C 73.8,41.4 79.2,43.2 79.2,54 C 79.2,64.8 73.8,66.6 66.6,66.6 C 66.6,73.8 64.8,79.2 54,79.2 C 43.2,79.2 41.4,73.8 41.4,66.6 C 34.2,66.6 28.8,64.8 28.8,54 C 28.8,43.2 34.2,41.4 41.4,41.4 C 41.4,34.2 43.2,28.8 54,28.8 Z"
-        android:fillColor="#21005D"/>
+        android:pathData="M 79.2,38.20 C 79.2,32.94 75.06,28.8 69.80,28.8 C 64.15,28.8 59.64,32.19 54,32.19 C 48.36,32.19 43.84,28.8 38.20,28.8 C 32.94,28.8 28.8,32.94 28.8,38.20 C 28.8,43.84 32.19,48.36 32.19,54 C 32.19,59.64 28.8,64.15 28.8,69.80 C 28.8,75.06 32.94,79.2 38.20,79.2 C 43.84,79.2 48.36,75.81 54,75.81 C 59.64,75.81 64.15,79.2 69.80,79.2 C 75.06,79.2 79.2,75.06 79.2,69.80 C 79.2,64.15 75.81,59.64 75.81,54 C 75.81,48.36 79.2,43.84 79.2,38.20 Z"
+        android:fillColor="@color/widget_primary_container"/>
+
+    <!-- Digit "2" -->
+    <path
+        android:pathData="M 41.79,48.05 C 41.79,44.48 44.17,42.10 46.55,42.10 C 48.93,42.10 51.31,44.48 51.31,48.05 C 51.31,50.43 50.12,52.22 48.34,54 L 41.79,61.74 L 51.31,61.74"
+        android:strokeColor="@color/widget_on_primary_container"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
+
+    <!-- Digit "5" -->
+    <path
+        android:pathData="M 66.21,42.10 L 57.88,42.10 L 57.88,51.03 L 61.45,51.03 C 65.02,51.03 66.21,53.41 66.21,56.38 C 66.21,59.95 63.83,62.33 60.86,62.33 C 58.47,62.33 57.29,61.14 56.69,59.95"
+        android:strokeColor="@color/widget_on_primary_container"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"/>
 </vector>
