@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color as AndroidColor
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Path
@@ -16,6 +17,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.glance.ColorFilter
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.Image
@@ -86,8 +88,6 @@ class DateWidget : GlanceAppWidget() {
             else -> 18.sp
         }
 
-        val nightMode = (context.resources.configuration.uiMode and
-            Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
         val dayCtx = context.forNight(false)
         val nightCtx = context.forNight(true)
 
@@ -99,13 +99,15 @@ class DateWidget : GlanceAppWidget() {
             day = Color(ContextCompat.getColor(dayCtx, R.color.widget_primary_40)),
             night = Color(ContextCompat.getColor(nightCtx, R.color.widget_primary_40)),
         )
-
-        // Bitmap fill must be a single solid color — pick by current uiMode.
-        val fillColor = ContextCompat.getColor(
-            if (nightMode) nightCtx else dayCtx,
-            R.color.widget_primary_container,
+        val primaryContainer = ColorProvider(
+            day = Color(ContextCompat.getColor(dayCtx, R.color.widget_primary_container)),
+            night = Color(ContextCompat.getColor(nightCtx, R.color.widget_primary_container)),
         )
-        val cookieBitmap = buildCookie4SidedBitmap(widthPx, heightPx, fillColor)
+
+        // White-filled bitmap; the actual color is applied as a ColorFilter tint
+        // on the host (launcher), so it resolves day/night the same way the text
+        // ColorProviders do — keeping shape and text in sync across mode changes.
+        val cookieBitmap = buildCookie4SidedBitmap(widthPx, heightPx, AndroidColor.WHITE)
 
         val openCalendar = actionStartActivity(
             Intent(Intent.ACTION_VIEW).apply {
@@ -127,6 +129,7 @@ class DateWidget : GlanceAppWidget() {
                 provider = ImageProvider(cookieBitmap),
                 contentDescription = null,
                 contentScale = ContentScale.Fit,
+                colorFilter = ColorFilter.tint(primaryContainer),
                 modifier = GlanceModifier.fillMaxSize()
             )
             Column(
