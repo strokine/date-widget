@@ -225,7 +225,7 @@ private fun buildCookie4SidedBitmap(widthPx: Int, heightPx: Int, color: Int): Bi
     val polyH = rect.height().coerceAtLeast(0.0001f)
     val scaleX = widthPx / polyW
     val scaleY = heightPx / polyH
-    val scale = maxOf(scaleX, scaleY) * 1.05f
+    val scale = minOf(scaleX, scaleY)
     val scaledW = polyW * scale
     val scaledH = polyH * scale
     path.transform(Matrix().apply {

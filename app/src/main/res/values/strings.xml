@@ -5,4 +5,7 @@
     <string name="widget_description">A Pixel-style clover-shaped date widget.</string>
     <string name="today">Today</string>
     <string name="main_hint">Long-press your home screen, tap Widgets, and pick \u201CClover Date\u201D to add the widget.</string>
+    <string name="preview_weekday" translatable="false">MON</string>
+    <string name="preview_day" translatable="false">15</string>
+    <string name="preview_month" translatable="false">June 2026</string>
 </resources>
