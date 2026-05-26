@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Date Widget</string>
-    <string name="widget_label">Clover Date</string>
-    <string name="widget_description">A Pixel-style clover-shaped date widget.</string>
+    <string name="widget_label">Dashing Date Widget</string>
+    <string name="widget_description">A Pixel-style cookie-shaped date widget.</string>
     <string name="today">Today</string>
-    <string name="main_hint">Long-press your home screen, tap Widgets, and pick \u201CClover Date\u201D to add the widget.</string>
+    <string name="main_hint">Long-press your home screen, tap Widgets, and pick \u201CDashing Date Widget\u201D to add the widget.</string>
     <string name="preview_weekday" translatable="false">MON</string>
     <string name="preview_day" translatable="false">15</string>
     <string name="preview_month" translatable="false">June 2026</string>

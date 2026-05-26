@@ -11,8 +11,8 @@ android {
         applicationId = "ws.dashing.datewidget"
         minSdk = 26
         targetSdk = 35
-        versionCode = 5
-        versionName = "1.1.1"
+        versionCode = 6
+        versionName = "1.1.2"
         vectorDrawables { useSupportLibrary = true }
     }
 
@@ -60,8 +60,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
 
     // Glance (widget)
-    implementation("androidx.glance:glance-appwidget:1.1.0")
-    implementation("androidx.glance:glance-material3:1.1.0")
+    implementation("androidx.glance:glance-appwidget:1.1.1")
+    implementation("androidx.glance:glance-material3:1.1.1")
 
     // Material shapes (Cookie4Sided)
     implementation("androidx.graphics:graphics-shapes:1.0.1")
