@@ -2,6 +2,7 @@ package ws.dashing.datewidget
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Matrix
@@ -10,6 +11,7 @@ import android.graphics.Path
 import android.graphics.RectF
 import android.provider.CalendarContract
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +38,7 @@ import androidx.glance.text.FontFamily
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
+import androidx.glance.color.ColorProvider
 import androidx.graphics.shapes.CornerRounding
 import androidx.graphics.shapes.RoundedPolygon
 import androidx.graphics.shapes.star
@@ -84,9 +86,25 @@ class DateWidget : GlanceAppWidget() {
             else -> 18.sp
         }
 
-        val onContainer = ColorProvider(resId = R.color.widget_on_primary_container)
-        val primary40 = ColorProvider(resId = R.color.widget_primary_40)
-        val fillColor = ContextCompat.getColor(context, R.color.widget_primary_container)
+        val nightMode = (context.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        val dayCtx = context.forNight(false)
+        val nightCtx = context.forNight(true)
+
+        val onContainer = ColorProvider(
+            day = Color(ContextCompat.getColor(dayCtx, R.color.widget_on_primary_container)),
+            night = Color(ContextCompat.getColor(nightCtx, R.color.widget_on_primary_container)),
+        )
+        val primary40 = ColorProvider(
+            day = Color(ContextCompat.getColor(dayCtx, R.color.widget_primary_40)),
+            night = Color(ContextCompat.getColor(nightCtx, R.color.widget_primary_40)),
+        )
+
+        // Bitmap fill must be a single solid color — pick by current uiMode.
+        val fillColor = ContextCompat.getColor(
+            if (nightMode) nightCtx else dayCtx,
+            R.color.widget_primary_container,
+        )
         val cookieBitmap = buildCookie4SidedBitmap(widthPx, heightPx, fillColor)
 
         val openCalendar = actionStartActivity(
@@ -162,6 +180,14 @@ private val GoogleSans = FontFamily("google-sans")
 // Display variant with high optical size (opsz=57) — triggers simplified
 // numeral glyphs (unflagged "1") matching the Pixel weather widget.
 private val GoogleSansDisplay = FontFamily("variable-display-large-emphasized")
+
+private fun Context.forNight(night: Boolean): Context {
+    val cfg = Configuration(resources.configuration).apply {
+        uiMode = (uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
+            if (night) Configuration.UI_MODE_NIGHT_YES else Configuration.UI_MODE_NIGHT_NO
+    }
+    return createConfigurationContext(cfg)
+}
 
 private fun buildCookie4SidedBitmap(widthPx: Int, heightPx: Int, color: Int): Bitmap {
     // Reuse Material's RoundedPolygon shape library: a 4-pointed rounded star
