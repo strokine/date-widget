@@ -15,17 +15,28 @@ Don't want to build from source? Grab the signed release APK directly:
 Sideload it on your Android device (you'll need to enable "Install from unknown sources" for your browser/file manager).
 
 ## Requirements
-- **Android Studio**: Jellyfish (2023.3.1) or newer
-- **JDK**: 17
-- **minSdk**: 26 · **targetSdk**: 34
+- **JDK**: 17 or newer
+- **minSdk**: 26 · **targetSdk**: 37 · **compileSdk**: 37
+- **AGP**: 9.3.1 · **Gradle**: 9.6.1 · **Kotlin**: 2.4.10
 
 ## First-time setup
+
+Release builds are signed from a gitignored `keystore.properties` in the project root:
+
+```properties
+storeFile=../release-keystore.jks
+storePassword=…
+keyAlias=release
+keyPassword=…
+```
+
+Without it, release builds fall back to the debug signing key.
 
 This project ships without the Gradle wrapper JAR (binaries aren't committed). Generate it once:
 
 ```bash
-# If you have a system Gradle >= 8.7
-gradle wrapper --gradle-version 8.7
+# If you have a system Gradle >= 9.6
+gradle wrapper --gradle-version 9.6.1
 
 # OR just open the folder in Android Studio — it will bootstrap the wrapper automatically.
 ```
